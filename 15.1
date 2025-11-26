@@ -1,0 +1,71 @@
+interface Actions1
+{
+    void Work();
+}
+interface Actions2
+{
+    void Сharging();
+}
+public class Robot : Actions1, Actions2
+{
+    private string name;
+    private int charge;
+    public Robot(string name, int charge)
+    {
+        this.name = name;
+        this.charge = charge;
+    }
+    public void Work()
+    {
+        if (charge > 0)
+        {
+            charge -= 20;
+            if (charge >= 0)
+            {
+                Console.WriteLine($"{name} работает, оставшийся заряд {charge}");
+            }
+            else
+            {
+                Console.WriteLine("Ошибка");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Ошибка");
+        }
+           
+    }
+    public void Сharging()
+    {
+        if (charge < 100)
+        {
+            charge += 50;
+            if (charge <= 100)
+            {
+                Console.WriteLine($"{name} заряжается, заряд состовляет {charge}");
+            }
+            else
+            {
+                Console.WriteLine("Ошибка");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Ошибка");
+        }
+            
+    }
+
+}
+ class Program
+ {
+     static void Main(string[] args)
+     {
+        Robot robot = new Robot("Лина", 50);
+         robot.Work();
+         robot.Work();
+         robot.Сharging();
+         robot.Work();
+         Console.ReadLine();
+     }
+ }

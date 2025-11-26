@@ -1,0 +1,76 @@
+interface Actions1
+{
+    void Contribution(double moneyUp);
+    void Removal(double moneyDoun);
+
+}
+interface Actions2
+{
+    void Transfer(double money);
+}
+
+public class Bank_account : Actions1, Actions2
+{
+    double Check1 = 10000;
+    double Check2 = 10000;
+    double result;
+    public void Check()
+    {
+        Console.WriteLine($"счет 1: {Check1}, счет 2: {Check2}");
+    }
+
+    public void Contribution(double moneyUp)
+    {
+        if (moneyUp < 0)
+        { Console.WriteLine("Ошибка"); }
+        else
+        {
+            result = Check1 += moneyUp;
+            Console.WriteLine($"счет пополнился, текущиц счет состовляет {result}");
+        }
+    }
+    public void Removal(double moneyDoun)
+    {
+        if (moneyDoun < 0 || moneyDoun > Check1)
+        { Console.WriteLine("Ошибка"); }
+        else
+        {
+            result = Check1 -= moneyDoun;
+            Console.WriteLine($"со счета сняли деньги, текущий счет {result}");
+        }
+    }
+    public void Transfer(double money)
+    {
+        if (money < 0 || money > Check1)
+        { Console.WriteLine("Ошибка"); }
+        else
+        {
+            double result1 = Check1 -= money;
+            double result2 = Check2 += money;
+            Console.WriteLine($"вы перевели деньги, теперь на 1 счету: {result1}, а на 2 счету: {result2}");
+        }
+
+    }
+class Program
+{
+    static void Main(string[] args)
+    {
+        Bank_account bank = new Bank_account();
+        bank.Check();
+
+        Actions1[] actions1s1 = { new Bank_account() };
+        foreach (Actions1 action1 in actions1s1)
+        {
+            action1.Contribution(100);
+            action1.Removal(200);
+        }
+
+
+        Actions2[] actions2s2 = { new Bank_account() };
+        foreach (Actions2 action2 in actions2s2)
+        {
+            action2.Transfer(500);
+        }
+        Console.ReadLine();
+    }
+}

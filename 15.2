@@ -1,0 +1,61 @@
+ interface On_off
+ {
+     void On();
+     void Off();
+ }
+ interface Level
+ {
+     void Level(int level);
+ }
+
+ public class Lamp : On_off, Level
+ {
+     public void On()
+     {
+         Console.WriteLine("Лампа включена, уровень заряда 100");
+     }
+     public void Off()
+     {
+         Console.WriteLine("Лампа выключена, уровень заряда 0");
+     }
+     public void Level(int level)
+     {
+         if (level > 0 && level < 100)
+         {
+             Console.WriteLine($"Лампа работает, уровень заряда {level}");
+         }
+         else
+         {
+             Console.WriteLine("Error");
+         }
+     }
+ }
+ public class Fan : On_off
+ {
+     public void On()
+     {
+         Console.WriteLine("Вентилятор включен, уровень заряда 100");
+     }
+     public void Off()
+     {
+         Console.WriteLine("Вентилятор выключен, уровень заряда 0");
+     }
+ }
+  class Program
+ {
+     static void Main(string[] args)
+     {
+         On_off[] on_Offs = { new Lamp(), new Fan() };
+         foreach (On_off on_off in on_Offs)
+         {
+             on_off.On();
+             on_off.Off();
+         }
+         Level[] levels = { new Lamp() };
+         foreach (Level level in levels)
+         {
+             level.Level(30);
+         }
+         Console.ReadLine();
+     }
+ }

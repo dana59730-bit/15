@@ -1,0 +1,45 @@
+interface Actions1
+{
+    void Atac();
+
+}
+interface Actions2
+{
+    void Treatment();
+}
+public class Warrior : Actions1
+{
+    public void Atac()
+    {
+        Console.WriteLine("Воин атакует");
+    }
+}
+public class Magician : Actions1, Actions2
+{
+    public void Atac()
+    {
+        Console.WriteLine("Маг атакует");
+    }
+    public void Treatment()
+    {
+        Console.WriteLine("Маг лечит");
+    }
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        Actions1[] actions1s1 = { new Warrior(), new Magician() };
+        foreach (Actions1 action1 in actions1s1)
+        {
+            action1.Atac();
+        }
+
+        Actions2[] actions2s2 = { new Magician() };
+        foreach (Actions2 action2 in actions2s2)
+        {
+            action2.Treatment();
+        }
+        Console.ReadLine();
+    }
+}
